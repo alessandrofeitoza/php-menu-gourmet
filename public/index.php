@@ -31,7 +31,7 @@ $menu->setMeals([
 while (true) {
     Console::writeLn("\nPense num prato que você gosta e tecle ENTER ou digite ENCERRAR");
 
-    $response = trim(fgets(STDIN));
+    $response = Console::read();
 
     if ('ENCERRAR' === $response) {
         Console::writeLn("----- FIM -----");

@@ -7,7 +7,7 @@ namespace App\Entity;
 class Meal 
 {
     private string $name;
-    private array $options;
+    private array $options = [];
 
     public function __construct(string $name)
     {

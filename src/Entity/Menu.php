@@ -19,25 +19,27 @@ class Menu
 
             Console::writeLn("O prato que você pensou é {$name}? (sim ou nao)");
 
-            $response = trim(fgets(STDIN));
+            $response = Console::read();
 
-            if ("sim" === $response) {
-                if (0 < count($meal->getOptions())) {
-                    $this->keys[] = $key;
-                    $result = $this->ask($meal->getOptions());
+            if ("sim" !== $response) {
+                continue;
+            }
 
-                    if (true === $result) {
-                        return true;
-                    }
-                
-                    $this->addOption($this->keys);
+            if (0 < count($meal->getOptions())) {
+                $this->keys[] = $key;
+                $result = $this->ask($meal->getOptions());
+
+                if (true === $result) {
                     return true;
                 }
-
-                Console::writeLn("\n\nÓtimo, acertei de novo\n\n");
-
+            
+                $this->addOption($this->keys);
                 return true;
             }
+
+            Console::writeLn("\n\nÓtimo, acertei de novo\n\n");
+
+            return true;
         }
 
         return $key;
@@ -47,7 +49,7 @@ class Menu
     {
         Console::writeLn("Em qual prato você pensou?");
 
-        $response = trim(fgets(STDIN));
+        $response = Console::read();
 
         if (null !== $keys) {
             $array = [];

@@ -10,4 +10,9 @@ trait Console
     {
         echo "{$text}\n";
     }
+
+    public static function read(): string
+    {
+        return trim(fgets(STDIN));
+    }
 }
