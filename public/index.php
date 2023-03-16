@@ -7,26 +7,23 @@ use App\Entity\Meal;
 
 $menu = new Menu();
 
+$mealLasanha = new Meal('Lasanha');
+$mealMacarrao = new Meal('algo com macarrão');
+$mealMacarrao->setOptions([
+    new Meal('Macarronada de Carne')
+]);
+
+$meal1 = new Meal('Massa');
+$meal1->setOptions([
+    $mealLasanha,
+    $mealMacarrao,
+]);
+
+$meal2 = new Meal('Bolo de Chocolate');
+
 $menu->setMeals([
-    [
-        'name' => 'Massa',
-        'options' => [
-            [
-                'name' => 'Lasanha',
-            ],
-            [
-                'name' => 'algo com macarrão',
-                'options' => [
-                    [
-                        'name' => 'Macarronada de Carne',
-                    ],
-                ],
-            ]
-        ],
-    ],
-    [
-        'name' => 'Bolo de Chocolate',
-    ],
+    $meal1,
+    $meal2,
 ]);
 
 

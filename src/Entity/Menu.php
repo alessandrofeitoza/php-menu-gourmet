@@ -12,17 +12,17 @@ class Menu
 
     public function ask (?array $meals = null): bool|int
     {
-        foreach ($meals ?? $this->meals as $key => $option) {
-            $name = $option['name'];
+        foreach ($meals ?? $this->meals as $key => $meal) {
+            $name = $meal->getName();
 
             echo "O prato que você pensou é {$name}? (sim ou nao)\n";
 
             $response = trim(fgets(STDIN));
 
             if ("sim" === $response) {
-                if (true === isset($option['options'])) {
+                if (0 < count($meal->getOptions())) {
                     $this->keys[] = $key;
-                    $result = $this->ask($option['options']);
+                    $result = $this->ask($meal->getOptions());
 
                     if (true === $result) {
                         return true;
@@ -82,7 +82,7 @@ class Menu
         }
 
         $this->meals[] = [
-            'name' => $response,
+            new Meal($response),
         ];
     }
 
