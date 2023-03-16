@@ -58,27 +58,18 @@ class Menu
                 $this->meals[$keys[0]]->addOption(
                     new Meal($response)
                 );
-                // $this->meals[$keys[0]]['options'] = $this->meals[$keys[0]]['options'] ?? [];
-
-                // $this->meals[$keys[0]]['options'][] = [
-                //     'name' => $response,
-                // ];
             }
 
             if (count($this->keys) === 2) {
-                $this->meals[$keys[0]]['options'] = $this->meals[$keys[0]]['options'] ?? [];
-
-                $this->meals[$keys[0]]['options'][$keys[1]]['options'][] = [
-                    'name' => $response,
-                ];
+                $this->meals[$keys[0]]->getOptions()[$keys[1]]->addOption(
+                    new Meal($response)
+                );
             }
 
             if (count($this->keys) === 3) {
-                $this->meals[$keys[0]]['options'] = $this->meals[$keys[0]]['options'] ?? [];
-
-                $this->meals[$keys[0]]['options'][$keys[1]]['options'][] = [
-                    'name' => $response,
-                ];
+                $this->meals[$keys[0]]->getOptions()[$keys[1]]->getOptions()[$keys[2]]->addOption(
+                    new Meal($response)
+                );
             }
             
             return;
