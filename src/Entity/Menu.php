@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Util\Console;
+
 class Menu 
 {
     private array $meals = [];
@@ -15,7 +17,7 @@ class Menu
         foreach ($meals ?? $this->meals as $key => $meal) {
             $name = $meal->getName();
 
-            echo "O prato que você pensou é {$name}? (sim ou nao)\n";
+            Console::writeLn("O prato que você pensou é {$name}? (sim ou nao)");
 
             $response = trim(fgets(STDIN));
 
@@ -32,7 +34,7 @@ class Menu
                     return true;
                 }
 
-                echo "\n\nÓtimo, acertei de novo\n\n";
+                Console::writeLn("\n\nÓtimo, acertei de novo\n\n");
 
                 return true;
             }
@@ -43,7 +45,7 @@ class Menu
 
     public function addOption(?array $keys = null): void
     {
-        echo "Em qual prato você pensou?\n";
+        Console::writeLn("Em qual prato você pensou?");
 
         $response = trim(fgets(STDIN));
 

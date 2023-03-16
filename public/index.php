@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 
 use App\Entity\Menu;
 use App\Entity\Meal;
+use App\Util\Console;
 
 $menu = new Menu();
 
@@ -28,15 +29,13 @@ $menu->setMeals([
 
 
 while (true) {
-    echo "\nPense num prato que você gosta e tecle ENTER ou digite ENCERRAR \n";
+    Console::writeLn("\nPense num prato que você gosta e tecle ENTER ou digite ENCERRAR");
 
     $response = trim(fgets(STDIN));
 
     if ('ENCERRAR' === $response) {
-        var_dump($menu->getMeals());
-
-        var_dump($menu->getKeys());
-        die("----- FIM -----\n");
+        Console::writeLn("----- FIM -----");
+        die();
     }
 
     $result = $menu->ask();
