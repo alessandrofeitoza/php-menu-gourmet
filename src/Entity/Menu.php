@@ -55,11 +55,14 @@ class Menu
             }
 
             if (count($this->keys) === 1) {
-                $this->meals[$keys[0]]['options'] = $this->meals[$keys[0]]['options'] ?? [];
+                $this->meals[$keys[0]]->addOption(
+                    new Meal($response)
+                );
+                // $this->meals[$keys[0]]['options'] = $this->meals[$keys[0]]['options'] ?? [];
 
-                $this->meals[$keys[0]]['options'][] = [
-                    'name' => $response,
-                ];
+                // $this->meals[$keys[0]]['options'][] = [
+                //     'name' => $response,
+                // ];
             }
 
             if (count($this->keys) === 2) {
@@ -81,14 +84,19 @@ class Menu
             return;
         }
 
-        $this->meals[] = [
-            new Meal($response),
-        ];
+        $this->addMeal(
+            new Meal($response)
+        );
     }
 
     public function getMeals(): array
     {
         return $this->meals;
+    }
+
+    public function addMeal(Meal $meal): void
+    {
+        $this->meals[] = $meal;
     }
 
     public function setMeals(array $meals): void
